@@ -1,0 +1,79 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Chat</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <nav class="rail">
+        <div class="rail-logo">4</div>
+        <button class="rail-btn active" title="对话">对话</button>
+        <button class="rail-btn" title="创作">创作</button>
+        <button class="rail-btn" title="工具">工具</button>
+      </nav>
+
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-top">
+          <button class="new-chat-btn" id="newChatBtn">+ 开启新对话</button>
+          <button class="icon-btn mobile-only" id="closeSidebarBtn" aria-label="关闭侧栏">X</button>
+        </div>
+        <div class="history" id="historyList"></div>
+        <div class="sidebar-bottom">
+          <label for="apiInput">后端地址</label>
+          <input id="apiInput" value="http://127.0.0.1:8000/api/chat" />
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <button class="icon-btn mobile-only" id="openSidebarBtn" aria-label="打开侧栏">=</button>
+          <div class="top-title">AI 对话</div>
+          <div class="status" id="statusText">就绪</div>
+        </header>
+
+        <section class="messages" id="messages"></section>
+
+        <footer class="composer-shell">
+          <div class="composer-wrap">
+            <div class="composer-toolbar">
+              <div class="model-picker" id="modelPicker">
+                <button type="button" class="model-btn" id="modelPickerBtn">
+                  <span id="modelPickerText">gemini / gemini-2.5-flash</span>
+                  <span class="caret">v</span>
+                </button>
+                <div class="model-menu hidden" id="modelMenu">
+                  <div class="model-menu-title">选择模型</div>
+                  <div id="modelOptions"></div>
+                </div>
+              </div>
+              <div class="toolbar-note">Enter 发送，Shift + Enter 换行</div>
+            </div>
+
+            <form id="chatForm" class="composer">
+              <textarea
+                id="messageInput"
+                rows="1"
+                maxlength="8000"
+                placeholder="输入内容，开始对话..."
+                required
+              ></textarea>
+              <button type="submit" id="sendBtn">发送</button>
+            </form>
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <template id="msgTpl">
+      <article class="msg-row">
+        <div class="avatar"></div>
+        <div class="bubble"></div>
+      </article>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
